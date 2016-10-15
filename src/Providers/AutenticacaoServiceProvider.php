@@ -6,6 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AutenticacaoServiceProvider extends ServiceProvider
 {
+
+    protected $commands = [
+        '\Laravelista\LumenVendorPublish\VendorPublishCommand'
+    ];
+    
     protected static $acls = [];
 
 
@@ -14,7 +19,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->commands($this->commands);
     }
 
 
@@ -30,8 +35,9 @@ class AutenticacaoServiceProvider extends ServiceProvider
 
 
     /**
-     * @param array $acl
-     * @param string|null  $nome
+     * @param array       $acl
+     * @param string|null $nome
+     *
      * @return string index
      */
     public static function addAcl(array $acl, $nome = null)
@@ -45,6 +51,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
 
     /**
      * @param $index
+     *
      * @return bool removido
      */
     public static function removeAcl($index)
