@@ -3,7 +3,7 @@
     "description": "autenticacao, laravel, lumen, auth, acl",
     "type": "library",
     "require": {
-        "laravel/lumen": "5.1.*"
+        "laravel/lumen-framework": "5.1.*"
     },
     "autoload": {
         "psr-4": {
