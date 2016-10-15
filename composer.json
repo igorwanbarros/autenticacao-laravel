@@ -1,0 +1,15 @@
+{
+    "name": "igorwanbarros/autenticacao-laravel",
+    "description": "autenticacao, laravel, lumen, auth, acl",
+    "type": "library",
+    "require-dev": {
+        "laravel/lumen": "5.2.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Wanderley",
+            "email": "igorwanbarros@gmail.com"
+        }
+    ]
+}
