@@ -2,8 +2,8 @@
     "name": "igorwanbarros/autenticacao-laravel",
     "description": "autenticacao, laravel, lumen, auth, acl",
     "type": "library",
-    "require-dev": {
-        "laravel/lumen": "5.2.*"
+    "require": {
+        "laravel/lumen": "5.1.*"
     },
     "license": "MIT",
     "authors": [
