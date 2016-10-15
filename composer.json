@@ -5,6 +5,11 @@
     "require": {
         "laravel/lumen": "5.1.*"
     },
+    "autoload": {
+        "psr-4": {
+            "Igorwanbarros\\Autenticacao\\": "src/"
+        }
+    },
     "license": "MIT",
     "authors": [
         {
