@@ -29,7 +29,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/Migrations' => base_path('database/migrations/'),
+            __DIR__ . '/../Migrations' => base_path('database/migrations/'),
         ]);
     }
 

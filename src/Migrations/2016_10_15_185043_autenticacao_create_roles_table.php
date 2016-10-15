@@ -29,6 +29,6 @@ class AutenticacaoCreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('autenticacao_auth');
+        Schema::drop('autenticacao_roles');
     }
 }
