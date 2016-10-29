@@ -6,11 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AutenticacaoServiceProvider extends ServiceProvider
 {
-
-    protected $commands = [
-        '\Laravelista\LumenVendorPublish\VendorPublishCommand'
-    ];
-    
     protected static $acls = [];
 
 
@@ -19,7 +14,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands($this->commands);
+
     }
 
 
