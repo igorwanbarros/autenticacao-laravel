@@ -3,6 +3,7 @@
 namespace Igorwanbarros\Autenticacao\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Igorwanbarros\Php2Html\Menu\ItemMenu;
 
 class AutenticacaoServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->registerMenu();
     }
 
 
@@ -26,6 +27,10 @@ class AutenticacaoServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Migrations' => base_path('database/migrations/'),
         ]);
+
+        $this->app->group(['namespace' => 'Igorwanbarros\Autenticacao\Http\Controllers'], function ($app) {
+            require __DIR__ . '/../Http/routes.php';
+        });
     }
 
 
@@ -68,5 +73,30 @@ class AutenticacaoServiceProvider extends ServiceProvider
     public static function acls()
     {
         return self::$acls;
+    }
+
+
+    protected function registerMenu()
+    {
+        app('menu')
+            ->createSubNivel('autenticacao', new ItemMenu('Autenticação', '#', 'fa fa-lock'))
+            ->addItemSubNivel(
+                'autenticacao',
+                'usuarios',
+                new ItemMenu(
+                    'Usuários',
+                    url('autenticacao/usuarios'),
+                    'fa fa-circle-o'
+                )
+            )
+            ->addItemSubNivel(
+                'autenticacao',
+                'perfis',
+                new ItemMenu(
+                    'Perfis',
+                    url('autenticacao/perfis'),
+                    'fa fa-circle-o'
+                )
+            );
     }
 }
