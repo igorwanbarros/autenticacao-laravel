@@ -2,16 +2,12 @@
 
 namespace Igorwanbarros\Autenticacao\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Igorwanbarros\BaseLaravel\Models\BaseModel;
 
-class Role extends Model
+class Role extends BaseModel
 {
     protected $table    = 'autenticacao_roles';
     
-    protected $fillable = [
-        'nome',
-    ];
-
 
     public function permissions()
     {

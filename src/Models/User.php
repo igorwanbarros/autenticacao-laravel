@@ -2,18 +2,9 @@
 
 namespace Igorwanbarros\Autenticacao\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Igorwanbarros\BaseLaravel\Models\BaseModel;
 
-class User extends Model
+class User extends BaseModel
 {
-    protected $table    = 'autenticacao_users';
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'login_count',
-        'login_attempt',
-        'remenber_token',
-    ];
+    protected $table = 'autenticacao_users';
 }
