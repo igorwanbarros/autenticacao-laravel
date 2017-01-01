@@ -1,0 +1,5 @@
+.info-box a,
+.info-box a:hover,
+.info-box a:visited {
+    color: white;
+}

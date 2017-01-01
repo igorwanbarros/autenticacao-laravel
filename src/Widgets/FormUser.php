@@ -19,10 +19,7 @@ class FormUser extends FormViewLaravel
 
     public function afterCreate()
     {
-        $this->setAction('autenticacao/usuarios');
-
-        $this->setAction('autenticacao/usuarios/salvar')
-            ->setMethod('POST');
+        $this->setMethod('POST');
 
         $this->addField(
             PasswordField::create('retype_password', 'Redigitar Senha')

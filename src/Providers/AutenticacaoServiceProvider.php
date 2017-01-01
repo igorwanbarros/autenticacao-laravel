@@ -2,14 +2,12 @@
 
 namespace Igorwanbarros\Autenticacao\Providers;
 
+use Igorwanbarros\Autenticacao\Commands\AclsCommand;
+use Igorwanbarros\Autenticacao\Managers\DashboardManager;
 use Illuminate\Support\ServiceProvider;
-use Igorwanbarros\Php2Html\Menu\ItemMenu;
 
 class AutenticacaoServiceProvider extends ServiceProvider
 {
-    protected static $acls = [];
-
-
     /**
      * @return void
      */
@@ -25,27 +23,23 @@ class AutenticacaoServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../Migrations' => base_path('database/migrations/'),
+            __DIR__ . '/../Migrations'  => base_path('database/migrations/'),
+            __DIR__ . '/../assets'      => base_path('public/assets/autenticacao-laravel/'),
         ]);
 
-        $this->app->group(['namespace' => 'Igorwanbarros\Autenticacao\Http\Controllers'], function ($app) {
-            require __DIR__ . '/../Http/routes.php';
+        $this->app->singleton('dashboard', function ($app) {
+            return new DashboardManager();
         });
-    }
 
+        $this->_bootViews();
 
-    /**
-     * @param array       $acl
-     * @param string|null $nome
-     *
-     * @return string index
-     */
-    public static function addAcl(array $acl, $nome = null)
-    {
-        $index = $nome ?: count(self::$acls);
-        self::$acls[$index] = $acl;
+        $this->app['tabs']->add(include_once __DIR__ . '/../Config/tabs.php');
+        $this->app['acls']->add(include_once __DIR__ . '/../Config/acls.php');
+        $this->app['dashboard']->add(include_once __DIR__ . '/../Config/dashboards.php');
 
-        return $index;
+        $this->commands([
+            AclsCommand::class,
+        ]);
     }
 
 
@@ -67,36 +61,22 @@ class AutenticacaoServiceProvider extends ServiceProvider
     }
 
 
-    /**
-     * @return array
-     */
-    public static function acls()
+    protected function registerMenu()
     {
-        return self::$acls;
+        require_once __DIR__ . '/../Config/menu.php';
     }
 
 
-    protected function registerMenu()
+    protected function _bootViews()
     {
-        app('menu')
-            ->createSubNivel('autenticacao', new ItemMenu('Autenticação', '#', 'fa fa-lock'))
-            ->addItemSubNivel(
-                'autenticacao',
-                'usuarios',
-                new ItemMenu(
-                    'Usuários',
-                    url('autenticacao/usuarios'),
-                    'fa fa-circle-o'
-                )
-            )
-            ->addItemSubNivel(
-                'autenticacao',
-                'perfis',
-                new ItemMenu(
-                    'Perfis',
-                    url('autenticacao/perfis'),
-                    'fa fa-circle-o'
-                )
-            );
+        $this->loadViewsFrom(__DIR__ . '/../Resources/view', 'autenticacao-laravel');
+
+        $this->app->group([
+                'namespace' => 'Igorwanbarros\Autenticacao\Http\Controllers'
+            ],
+            function ($app) {
+                require __DIR__ . '/../Http/routes.php';
+            }
+        );
     }
 }

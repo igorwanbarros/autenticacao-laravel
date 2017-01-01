@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AutenticacaoCreateRolesTable extends Migration
+class AutenticacaoCreatePerfisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AutenticacaoCreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('autenticacao_roles', function (Blueprint $tb) {
+        Schema::create('autenticacao_perfis', function (Blueprint $tb) {
             $tb->increments('id');
             $tb->string('nome');
             $tb->timestamps();
@@ -29,6 +29,6 @@ class AutenticacaoCreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('autenticacao_roles');
+        Schema::drop('autenticacao_perfis');
     }
 }
