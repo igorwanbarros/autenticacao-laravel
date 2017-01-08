@@ -231,7 +231,7 @@ $app->group([
 
     $app->get('/novo', [
         'middleware'    => 'auth:autenticacao_dashboard_novo',
-        'uses'          => 'DashboardContraoller@form'
+        'uses'          => 'DashboardController@form'
     ]);
 
     $app->get('/editar/{id}', [
