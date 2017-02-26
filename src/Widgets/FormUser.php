@@ -34,7 +34,8 @@ class FormUser extends FormViewLaravel
             ->setLabel('Nome')
             ->setSize(8);
 
-        $this->getField('email')->setSize(4);
+        $this->getField('email')
+             ->setSize(4);
     }
 
 

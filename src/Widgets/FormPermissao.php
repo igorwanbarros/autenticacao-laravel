@@ -23,7 +23,8 @@ class FormPermissao extends FormViewLaravel
         unset($this->fields['title']);
         unset($this->fields['slug']);
         unset($this->fields['description']);
-        $table->callback($this->_rowTableView($permissoesSelecionadas));
+        $table->callback($this->_rowTableView($permissoesSelecionadas))
+              ->checkHeader();
         $this->addField(HtmlField::create('table', 'div', $table));
 
         $arrayGroup = array_column($table->getCollection()->get()->toArray(), 'id');
@@ -42,7 +43,7 @@ class FormPermissao extends FormViewLaravel
                 $checkbox->addAttribute('checked', 'checked');
             }
 
-            $data->id = $checkbox;
+            $data->id = $checkbox->icheck();
         };
     }
 }
