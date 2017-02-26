@@ -3,6 +3,7 @@
 namespace Igorwanbarros\Autenticacao\Providers;
 
 use Igorwanbarros\Autenticacao\Commands\AclsCommand;
+use Igorwanbarros\Autenticacao\Commands\RecursosBasicosCommand;
 use Igorwanbarros\Autenticacao\Managers\DashboardManager;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +26,7 @@ class AutenticacaoServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Migrations'  => base_path('database/migrations/'),
             __DIR__ . '/../assets'      => base_path('public/assets/autenticacao-laravel/'),
+            __DIR__ . '/../Config/autenticacao-resources.php' => base_path('config/autenticacao-resources.php'),
         ]);
 
         $this->app->singleton('dashboard', function ($app) {
@@ -39,7 +41,12 @@ class AutenticacaoServiceProvider extends ServiceProvider
 
         $this->commands([
             AclsCommand::class,
+            RecursosBasicosCommand::class
         ]);
+
+        if (file_exists(base_path('config/autenticacao-resources.php'))) {
+            $this->app->configure('autenticacao-resources');
+        }
     }
 
 

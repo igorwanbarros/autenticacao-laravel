@@ -30,6 +30,7 @@ class AclsCommand extends Command
 
         $this->comment($mensagem);
         $this->info("Comando executado com sucesso!\n{$line}\n");
+        $this->call('autenticacao:resource');
     }
 
 }

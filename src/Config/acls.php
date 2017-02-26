@@ -130,9 +130,15 @@ return [
     ],
     /*
      |-------------------------------------------------------------------------
-     | Acls
+     | Acls Dashboard
      |-------------------------------------------------------------------------
      */
+    [
+        'slug'          => 'home',
+        'title'         => 'Página Inicial',
+        'description'   => 'Página inicial da Aplicação',
+        'group'         => 'dashboard',
+    ],
     [
         'slug'          => 'autenticacao_dashboard_inicio',
         'title'         => 'Início',
