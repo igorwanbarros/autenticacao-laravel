@@ -256,7 +256,7 @@ $app->group([
 });
 
 $app->get('/home', [
-    'namespace' => 'Igorwanbarros\Autenticacao\Http\Controllers',
-    'middleware'    => 'auth',
-    'uses'      => 'DashboardController@dashboard'
+    'namespace'         => 'Igorwanbarros\Autenticacao\Http\Controllers',
+    'middleware'        => 'auth:home',
+    'uses'              => 'DashboardController@dashboard'
 ]);

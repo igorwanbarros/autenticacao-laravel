@@ -94,8 +94,11 @@ class UsuariosController extends BaseController
             'retype_password.same' => 'O valor do campo não corresponde ao informado no campo Senha.',
             'retype_password.required_with' => 'É obrigatório ao informar o campo Senha.',
             'password.required_with' => 'É obrigatório ao informar o campo Redigitar Senha.',
+            'email.unique' => 'O email informado já  encontra-se cadastrado.',
         ];
 
+        $this->form->getField('email')
+             ->setRule("unique:autenticacao_users,email,{$this->request->id},id,deleted_at,NULL");
 
         return StoreHelper::support($this, null, function(UsuariosController $controller) {
             $controller->validarPassword();
